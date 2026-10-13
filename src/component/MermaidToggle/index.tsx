@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Mermaid from '../Mermaid';
 import MermaidSource from '../MermaidSource';
-import type { MermaidProps } from '../types';
+import MermaidViewer from '../MermaidViewer';
+import type { MermaidToggleProps } from '../types';
 import './index.less';
 
 type MermaidView = 'preview' | 'code';
@@ -11,7 +11,7 @@ const VIEWS: { value: MermaidView; label: string }[] = [
   { value: 'code', label: 'Code' },
 ];
 
-function MermaidToggle(props: MermaidProps) {
+function MermaidToggle(props: MermaidToggleProps) {
   const { code } = props;
   const [view, setView] = React.useState<MermaidView>('preview');
 
@@ -32,7 +32,7 @@ function MermaidToggle(props: MermaidProps) {
           ))}
         </div>
       </div>
-      {view === 'preview' ? <Mermaid {...props} /> : <MermaidSource code={code} />}
+      {view === 'preview' ? <MermaidViewer {...props} /> : <MermaidSource code={code} />}
     </div>
   );
 }

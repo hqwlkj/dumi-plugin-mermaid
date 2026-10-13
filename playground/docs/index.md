@@ -39,5 +39,6 @@ graph TD;
 | 代码块   | 使用 `mermaid` 语言标记                                             |
 | 主题     | 跟随 dumi 明暗配色（`data-prefers-color` / `prefers-color-scheme`） |
 | 初始化项 | 通过插件配置传入 `mermaidConfig`                                    |
+| 控件     | 图区右上放大 / 复制，右下平移缩放（`Ctrl`/`Cmd` + 滚轮、拖拽）      |
 
 更多的用法与限制参见 [Usage](/usage)。
