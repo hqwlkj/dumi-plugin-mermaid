@@ -6,6 +6,8 @@ import './index.less';
 export type MermaidModalProps = {
   /** 无障碍名称 */
   label: string;
+  /** 关闭按钮的无障碍名称；文案由调用方给定，弹窗本身不关心 i18n */
+  closeLabel: string;
   /** 跟随站点明暗主题给面板配色 */
   colorScheme?: 'light' | 'dark';
   onClose: () => void;
@@ -23,6 +25,7 @@ const FOCUSABLE =
  */
 export default function MermaidModal({
   label,
+  closeLabel,
   colorScheme = 'light',
   onClose,
   children,
@@ -114,8 +117,8 @@ export default function MermaidModal({
         <button
           type="button"
           className="dumi-plugin-mermaid-modal-close"
-          aria-label="Close"
-          title="Close"
+          aria-label={closeLabel}
+          title={closeLabel}
           onClick={onClose}
         >
           <CloseIcon />

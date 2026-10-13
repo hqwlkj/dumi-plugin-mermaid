@@ -8,6 +8,7 @@ import {
   zoomAt,
   type MermaidTransform,
 } from '../transform';
+import type { MermaidTranslate } from '../useMermaidLocale';
 import { PanZoomPanel } from './Controls';
 
 /** 移动端交给页面滚动，鼠标拖拽超过这个距离才算平移，避免普通点击把图表带偏 */
@@ -29,13 +30,15 @@ export type StageProps = {
   panZoom?: boolean;
   /** 透传到图表容器，供 `onRender` 序列化 svg 使用 */
   bodyRef?: React.Ref<HTMLDivElement>;
+  /** 平移缩放面板的文案翻译函数 */
+  t: MermaidTranslate;
 };
 
 /**
  * 图表视口：负责承载 svg，并把平移/缩放状态映射成一层 transform。
  * 弹窗内复用同一个组件，因此每一份视口都持有各自独立的变换状态。
  */
-function Stage({ code, svg, error, loading, panZoom = true, bodyRef }: StageProps) {
+function Stage({ code, svg, error, loading, panZoom = true, bodyRef, t }: StageProps) {
   const viewportRef = React.useRef<HTMLDivElement>(null);
   const dragRef = React.useRef<DragState | null>(null);
   const [transform, setTransform] = React.useState<MermaidTransform>(IDENTITY_TRANSFORM);
@@ -150,6 +153,7 @@ function Stage({ code, svg, error, loading, panZoom = true, bodyRef }: StageProp
           onZoomIn={() => zoom(ZOOM_FACTOR)}
           onZoomOut={() => zoom(1 / ZOOM_FACTOR)}
           onReset={() => setTransform(IDENTITY_TRANSFORM)}
+          t={t}
         />
       ) : null}
     </>

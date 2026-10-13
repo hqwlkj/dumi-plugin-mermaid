@@ -38,12 +38,28 @@ graph TD;
 
 ### Options
 
-`mermaidConfig` 会作为 `mermaid.initialize` 的参数，必须是可序列化的 JSON：
+`mermaidConfig` 会作为 `mermaid.initialize` 的参数，必须是可序列化的 JSON。
+选项写在**与插件同名的顶层配置键**下（umi 4 已不支持 `plugins: [['plugin', options]]` 写法）：
 
 ```ts
 // .dumirc.ts
 export default {
-  plugins: [['dumi-plugin-mermaid', { mermaidConfig: { securityLevel: 'loose' } }]],
+  plugins: ['dumi-plugin-mermaid'],
+  'dumi-plugin-mermaid': {
+    mermaidConfig: { securityLevel: 'loose' },
+  },
+};
+```
+
+控件的多语言文案同样可以在这里用 `locales` 覆盖（跟随 dumi 当前语言，内置 `zh-CN` / `en-US`）：
+
+```ts
+// .dumirc.ts
+export default {
+  plugins: ['dumi-plugin-mermaid'],
+  'dumi-plugin-mermaid': {
+    locales: { 'zh-CN': { 'mermaid.actions.expand': '全屏查看' } },
+  },
 };
 ```
 

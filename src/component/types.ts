@@ -1,3 +1,5 @@
+import type { MermaidLocaleOverrides } from './locales';
+
 export type MermaidProps = {
   /** mermaid 图表源码 */
   code: string;
@@ -19,6 +21,8 @@ export type MermaidViewerProps = MermaidProps & {
   toolbar?: boolean;
   /** 是否启用右下角平移缩放面板 */
   panZoom?: boolean;
+  /** 覆盖内置文案，形如 `{ 'en-US': { 'mermaid.actions.expand': 'Fullscreen' } }` */
+  locales?: MermaidLocaleOverrides;
   className?: string;
 };
 
