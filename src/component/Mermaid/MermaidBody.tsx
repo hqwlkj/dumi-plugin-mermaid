@@ -21,7 +21,14 @@ export type MermaidBodyProps = {
  */
 function MermaidBody({ code, svg, error, loading, className, rootRef }: MermaidBodyProps) {
   if (svg) {
-    return <div ref={rootRef} className={className} dangerouslySetInnerHTML={{ __html: svg }} />;
+    return (
+      <div
+        ref={rootRef}
+        className={className}
+        data-json={JSON.stringify({ data: code })}
+        dangerouslySetInnerHTML={{ __html: svg }}
+      />
+    );
   }
 
   // 服务端与首屏保持一致，渲染完成前用 dumi 的骨架占位
