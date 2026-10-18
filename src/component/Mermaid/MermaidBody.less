@@ -8,12 +8,17 @@
 //
 // 外层用 :where() 归零特异性，方便主题整体覆盖
 :where(.dumi-plugin-mermaid) {
+  display: flex;
   padding: 16px;
+  min-height: 240px;
+  height: fit-content;
 
   // 图表默认居中：mermaid 会给 svg 写 width="100%" + max-width={自然宽度}，
   // 配合 block + auto 外边距即可在容器内水平居中
   svg {
     display: block;
-    margin-inline: auto;
+    margin: 0 auto;
+    transform-origin: 50%;
+    transition: .1s ease-in-out;
   }
 }
